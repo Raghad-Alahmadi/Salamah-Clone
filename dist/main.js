@@ -124,9 +124,33 @@
     }
   };
 
+  // src/components/Header.ts
+  var Header = class {
+    constructor() {
+      this.headerElement = document.createElement("header");
+      this.headerElement.className = "bg-customGray text-black p-4 flex justify-between items-center";
+      this.renderHeader();
+    }
+    renderHeader() {
+      const leftItem = document.createElement("div");
+      leftItem.className = "text-xl font-bold";
+      leftItem.textContent = "English";
+      const rightItem = document.createElement("div");
+      rightItem.className = "text-lg";
+      rightItem.textContent = "User Profile";
+      this.headerElement.appendChild(leftItem);
+      this.headerElement.appendChild(rightItem);
+    }
+    render() {
+      return this.headerElement;
+    }
+  };
+
   // src/main.ts
   var app = document.getElementById("app");
   if (app) {
+    const header = new Header();
+    app.appendChild(header.render());
     const registrationForm = new Form();
     app.appendChild(registrationForm.render());
   }

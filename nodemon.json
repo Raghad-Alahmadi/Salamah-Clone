@@ -1,0 +1,5 @@
+{
+    "watch": ["src", "styles"],
+    "ext": "ts,css",
+    "exec": "vite"
+  }

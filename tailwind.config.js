@@ -5,7 +5,14 @@ module.exports = {
     './index.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        customGray: '#f7f7f7',
+      },
+      backgroundImage: {
+        'custom-bg': "url('assets/outer-bg.321110dec68f8427.svg')",
+      },
+    },
   },
   plugins: [],
 }

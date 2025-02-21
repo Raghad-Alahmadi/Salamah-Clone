@@ -6,7 +6,7 @@ export class InputField {
         input.id = this.id;
         input.type = this.type;
         input.placeholder = this.placeholder;
-        input.classList.add("input-field");
+        input.className = "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-green-200 focus:border-green-300 sm:text-sm";
         return input;
     }
 }
