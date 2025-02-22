@@ -3,29 +3,30 @@ import { Button } from "./Button";
 import { Validation } from "./Validation";
 import { API } from "./API";
 import { Popup } from "./Popup";
+import 'animate.css'; // Import Animate.css
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export class Form {
     private formElement: HTMLFormElement;
-    private companyData: any;
+    private companyData: any[]; // Store all company data
     private businessTypes: string[] = [];
 
     constructor() {
         this.formElement = document.createElement("form");
-        this.formElement.className = "bg-white p-6 rounded shadow-md max-w-6xl mx-auto";
-        
+        this.formElement.className = "bg-white p-6 rounded shadow-md max-w-6xl mx-auto animate__animated animate__fadeIn";
+
         const header = document.createElement("h2");
         header.textContent = "Permit Requester Registration";
-        header.className = "text-2xl font-semibold mb-6 justify-self-center";
-
+        header.className = "text-2xl font-semibold mb-6 justify-self-center animate__animated animate__fadeInDown";
         this.formElement.appendChild(header);
 
         const header2 = document.createElement("h2");
         header2.textContent = "Organization Information";
-        header2.className = "text-xl font-semibold mb-6";
+        header2.className = "text-xl font-semibold mb-6 animate__animated animate__fadeInUp";
         this.formElement.appendChild(header2);
-        
+
         const separator = document.createElement("hr");
-        separator.className = "mb-8";
+        separator.className = "mb-8 animate__animated animate__fadeIn";
         this.formElement.appendChild(separator);
 
         this.renderForm();
@@ -49,7 +50,7 @@ export class Form {
 
         // First Row: Company Name and Commercial Registration Number
         const firstRow = document.createElement("div");
-        firstRow.className = "flex flex-wrap space-x-4 mb-4";
+        firstRow.className = "flex flex-wrap space-x-4 mb-4 animate__animated animate__fadeInLeft";
         fields.slice(0, 2).forEach(field => {
             const label = document.createElement("label");
             label.htmlFor = field.id;
@@ -61,7 +62,7 @@ export class Form {
             errorElement.className = "text-red-500 text-sm";
 
             const fieldContainer = document.createElement("div");
-            fieldContainer.className = "flex-1 min-w-[200px]"; // Ensure minimum width for responsiveness
+            fieldContainer.className = "flex-1 min-w-[200px]";
             fieldContainer.appendChild(label);
             fieldContainer.appendChild(input);
             fieldContainer.appendChild(errorElement);
@@ -70,9 +71,15 @@ export class Form {
         });
         this.formElement.appendChild(firstRow);
 
+        // Add event listener to companyName input field
+        const companyNameInput = this.formElement.querySelector("#companyName") as HTMLInputElement;
+        if (companyNameInput) {
+            companyNameInput.addEventListener("input", () => this.handleCompanyNameInput(companyNameInput.value));
+        }
+
         // Second Row: Email and Phone Number
         const secondRow = document.createElement("div");
-        secondRow.className = "flex flex-wrap space-x-4 mb-4";
+        secondRow.className = "flex flex-wrap space-x-4 mb-4 animate__animated animate__fadeInRight";
         fields.slice(2, 4).forEach(field => {
             const label = document.createElement("label");
             label.htmlFor = field.id;
@@ -84,7 +91,7 @@ export class Form {
             errorElement.className = "text-red-500 text-sm";
 
             const fieldContainer = document.createElement("div");
-            fieldContainer.className = "flex-1 min-w-[200px]"; // Ensure minimum width for responsiveness
+            fieldContainer.className = "flex-1 min-w-[200px]";
             fieldContainer.appendChild(label);
             fieldContainer.appendChild(input);
             fieldContainer.appendChild(errorElement);
@@ -95,7 +102,7 @@ export class Form {
 
         // Third Row: Password and Confirm Password
         const thirdRow = document.createElement("div");
-        thirdRow.className = "flex flex-wrap space-x-4 mb-4";
+        thirdRow.className = "flex flex-wrap space-x-4 mb-4 animate__animated animate__fadeInLeft";
         fields.slice(4, 6).forEach(field => {
             const label = document.createElement("label");
             label.htmlFor = field.id;
@@ -107,7 +114,7 @@ export class Form {
             errorElement.className = "text-red-500 text-sm";
 
             const fieldContainer = document.createElement("div");
-            fieldContainer.className = "flex-1 min-w-[200px]"; // Ensure minimum width for responsiveness
+            fieldContainer.className = "flex-1 min-w-[200px]";
             fieldContainer.appendChild(label);
             fieldContainer.appendChild(input);
             fieldContainer.appendChild(errorElement);
@@ -118,7 +125,7 @@ export class Form {
 
         // Fourth Row: Address (City, Region, Zip Code)
         const fourthRow = document.createElement("div");
-        fourthRow.className = "flex flex-wrap space-x-4 mb-4";
+        fourthRow.className = "flex flex-wrap space-x-4 mb-4 animate__animated animate__fadeInRight";
         fields.slice(6, 9).forEach(field => {
             const label = document.createElement("label");
             label.htmlFor = field.id;
@@ -130,7 +137,7 @@ export class Form {
             errorElement.className = "text-red-500 text-sm";
 
             const fieldContainer = document.createElement("div");
-            fieldContainer.className = "flex-1 min-w-[200px]"; // Ensure minimum width for responsiveness
+            fieldContainer.className = "flex-1 min-w-[200px]";
             fieldContainer.appendChild(label);
             fieldContainer.appendChild(input);
             fieldContainer.appendChild(errorElement);
@@ -141,7 +148,7 @@ export class Form {
 
         // Fifth Row: Business Type
         const businessTypeRow = document.createElement("div");
-        businessTypeRow.className = "mb-4";
+        businessTypeRow.className = "mb-4 animate__animated animate__fadeInUp";
         const businessTypeField = fields[9];
         const label = document.createElement("label");
         label.htmlFor = businessTypeField.id;
@@ -179,7 +186,7 @@ export class Form {
 
         // Term Conditions and Submit Button
         const termRow = document.createElement("div");
-        termRow.className = "flex items-center mb-6";
+        termRow.className = "flex items-center mb-6 animate__animated animate__fadeInUp";
 
         // Checkbox field
         const termsField = fields[10];
@@ -246,24 +253,7 @@ export class Form {
                             <li>You may close your account at any time by following the account deletion process.</li>
                         </ul>
                     </li>
-                    
-                    <li><strong>Limitation of Liability</strong>
-                        <ul class="list-inside">
-                            <li>Salamah is not liable for any damages arising from the use or inability to use the platform, including but not limited to direct, indirect, incidental, and consequential damages.</li>
-                        </ul>
-                    </li>
-                    
-                    <li><strong>Amendments</strong>
-                        <ul class="list-inside">
-                            <li>We reserve the right to modify these Terms and Conditions at any time. Changes will be posted on this page, and your continued use of Salamah after such modifications will constitute your acceptance of the revised terms.</li>
-                        </ul>
-                    </li>
-                    
-                    <li><strong>Governing Law</strong>
-                        <ul class="list-inside">
-                            <li>These Terms and Conditions will be governed by the laws of the jurisdiction in which you reside, without regard to its conflict of law principles.</li>
-                        </ul>
-                    </li>
+
                 </ol>
 
                 <p>By using Salamah, you confirm that you have read, understood, and agree to these Terms and Conditions.</p>
@@ -293,84 +283,46 @@ export class Form {
         this.formElement.appendChild(submitButton.render());
     }
 
-    private handleSubmit(event: Event) {
-        event.preventDefault(); // Prevent the default form submission
+    private handleCompanyNameInput(companyName: string) {
+        if (!this.companyData) return;
 
-        const termsCheckbox = this.formElement.querySelector("#terms") as HTMLInputElement;
-        const businessTypeSelect = this.formElement.querySelector("#businessType") as HTMLSelectElement;
-        const businessTypeErrorElement = businessTypeSelect.nextElementSibling as HTMLElement;
-        const errorElement = this.formElement.querySelector(".error-message") as HTMLElement;
-
-        let errorMessage = "";
-
-        if (!termsCheckbox.checked) {
-            errorMessage = "You must agree to the Terms & Conditions before submitting the form.";
+        const matchedCompany = this.companyData.find(company => company.company.name.toLowerCase() === companyName.toLowerCase());
+        if (matchedCompany) {
+            this.populateFormFields(matchedCompany);
         }
-
-        if (errorMessage) {
-            errorElement.textContent = errorMessage;
-            errorElement.style.display = "block";
-        }
-
-        if (!errorMessage && Validation.validateForm(this.formElement)) {
-            const formData = this.getFormData();
-            console.log("Form submitted with data:", formData);
-
-            // Show success popup
-            const successPopup = new Popup(`
-                <h3 class="text-xl font-semibold mb-4">Success</h3>
-                <p>You have successfully registered</p>
-            `);
-            document.body.appendChild(successPopup.render());
-        } else {
-            errorElement.textContent = "Form validation failed. Please check your input.";
-            errorElement.style.display = "block";
-        }
-    }
-
-    private getFormData(): Record<string, any> {
-        const formData: Record<string, any> = {};
-        const inputs = this.formElement.querySelectorAll("input, select");
-
-        inputs.forEach(input => {
-            if (input.type === "checkbox") {
-                formData[input.id] = (input as HTMLInputElement).checked;
-            } else {
-                formData[input.id] = input.value;
-            }
-        });
-
-        return formData;
     }
 
     private async fetchAndPopulateCompanyData() {
         try {
             const companyData = await API.fetchCompanyData();
-            this.companyData = companyData[0]; // Assuming we use the first company data for pre-filling
-            this.businessTypes = companyData.map((company: any) => company.company.bs); // Assuming bs is a field in the API response
-            this.populateFormFields();
+            this.companyData = companyData; // Store all company data
+            this.businessTypes = companyData.map((company: any) => company.company.bs);
             this.populateBusinessTypeDropdown();
         } catch (error) {
             console.error("Failed to fetch company data:", error);
         }
     }
 
-    private populateFormFields() {
-        if (!this.companyData) return;
+    private populateFormFields(companyData?: any) {
+        const data = companyData || this.companyData[0]; // Use provided data or default to the first company
 
         const companyNameInput = this.formElement.querySelector("#companyName") as HTMLInputElement;
+        const commercialRegInput = this.formElement.querySelector("#commercialReg") as HTMLInputElement;
         const emailInput = this.formElement.querySelector("#email") as HTMLInputElement;
         const phoneInput = this.formElement.querySelector("#phone") as HTMLInputElement;
         const cityInput = this.formElement.querySelector("#city") as HTMLInputElement;
         const regionInput = this.formElement.querySelector("#region") as HTMLInputElement;
         const zipCodeInput = this.formElement.querySelector("#zipCode") as HTMLInputElement;
+        const businessTypeSelect = this.formElement.querySelector("#businessType") as HTMLSelectElement;
 
-        if (companyNameInput) companyNameInput.value = this.companyData.company.name;
-        if (emailInput) emailInput.value = this.companyData.email;
-        if (phoneInput) phoneInput.value = this.companyData.phone;
-        if (cityInput) cityInput.value = this.companyData.address.city;
-        if (regionInput) regionInput.value = this.companyData.address.suite;
-        if (zipCodeInput) zipCodeInput.value = this.companyData.address.zipcode;
+        if (companyNameInput) companyNameInput.value = data.company.name;
+        if (commercialRegInput) commercialRegInput.value = data.id; // Prefill Commercial Registration Number (id)
+        if (emailInput) emailInput.value = data.email;
+        if (phoneInput) phoneInput.value = data.phone;
+        if (cityInput) cityInput.value = data.address.city;
+        if (regionInput) regionInput.value = data.address.suite;
+        if (zipCodeInput) zipCodeInput.value = data.address.zipcode;
+        if (businessTypeSelect) businessTypeSelect.value = data.company.bs; // Prefill Business Type
     }
 
     private populateBusinessTypeDropdown() {
@@ -395,6 +347,115 @@ export class Form {
             optionElement.textContent = businessType;
             businessTypeSelect.appendChild(optionElement);
         });
+    }
+
+    private async handleSubmit(event: Event) {
+        event.preventDefault(); // Prevent the default form submission
+        const spinner = new LoadingSpinner();
+        spinner.show();
+
+        const termsCheckbox = this.formElement.querySelector("#terms") as HTMLInputElement;
+        const errorElement = this.formElement.querySelector(".error-message") as HTMLElement;
+
+        let errorMessage = "";
+
+        if (!termsCheckbox.checked) {
+            errorMessage += "You must agree to the Terms & Conditions before submitting the form.\n";
+        }
+
+        if (errorMessage) {
+            errorElement.textContent = errorMessage;
+            errorElement.style.display = "block";
+            errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation for errors
+            spinner.hide();
+        } else {
+            errorElement.textContent = "";
+            errorElement.style.display = "none";
+            errorElement.classList.remove("animate__animated", "animate__shakeX");
+
+            if (Validation.validateForm(this.formElement)) {
+                const formData = this.getFormData();
+                console.log("Form submitted with data:", formData);
+
+                try {
+                    // Prepare the data for submission (exclude password and confirmPassword)
+                    const submissionData = {
+                        id: formData.commercialReg, // Use Commercial Registration Number as the ID
+                        companyName: formData.companyName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        city: formData.city,
+                        region: formData.region,
+                        zipCode: formData.zipCode,
+                        businessType: formData.businessType
+                    };
+
+                    // Submit the form data using the Fetch API
+                    const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(submissionData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+
+                    const result = await response.json();
+                    console.log("Registration successful:", result);
+
+                    // Clear the form fields after successful submission
+                    this.clearFormFields();
+
+                    // Show success popup
+                    const successPopup = new Popup(`
+                        <h3 class="text-xl font-semibold mb-4">Success</h3>
+                        <p>You have successfully registered</p>
+                    `);
+                    document.body.appendChild(successPopup.render());
+                } catch (error) {
+                    console.error("There was a problem with the registration:", error);
+                    errorElement.textContent = "Registration failed. Please try again.";
+                    errorElement.style.display = "block";
+                    errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation for errors
+                } finally {
+                    spinner.hide();
+                }
+            } else {
+                errorElement.textContent = "Form validation failed. Please check your input.";
+                errorElement.style.display = "block";
+                errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation for errors
+                spinner.hide();
+            }
+        }
+    }
+
+    private clearFormFields() {
+        const inputs = this.formElement.querySelectorAll("input, select");
+        inputs.forEach(input => {
+            if (input.type === "checkbox") {
+                (input as HTMLInputElement).checked = false;
+            } else {
+                (input as HTMLInputElement).value = "";
+            }
+        });
+    }
+
+    private getFormData(): Record<string, any> {
+        const formData: Record<string, any> = {};
+        const inputs = this.formElement.querySelectorAll("input, select");
+
+        inputs.forEach(input => {
+            if (input.type === "checkbox") {
+                formData[input.id] = (input as HTMLInputElement).checked;
+            } else {
+                formData[input.id] = input.value;
+            }
+        });
+
+        return formData;
     }
 
     public render(): HTMLElement {

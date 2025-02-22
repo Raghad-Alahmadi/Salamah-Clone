@@ -2,3 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-custom-bg bg-cover bg-center bg-no-repeat h-full;
+}
+
+body.dark-mode {
+    @apply bg-gray-900 text-white;
+    background-image: none; /* Remove background image */
+    background-color: #121212; /* Set solid background color */
+}
+
+body.dark-mode .bg-custom-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    z-index: 1;
+}
+
+body.dark-mode .bg-custom-bg > * {
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-mode button {
+    @apply bg-white text-gray-900;
+}
+
+/* Dark mode styles for the header */
+body.dark-mode header {
+    @apply bg-gray-800 text-white;
+}
+
+body.dark-mode header a {
+    @apply text-gray-300;
+}
+
+/* Dark mode styles for the form */
+body.dark-mode form {
+    @apply bg-gray-800 text-white;
+}
+
+body.dark-mode form input,
+body.dark-mode form select,
+body.dark-mode form textarea {
+    @apply bg-gray-700 text-white border-gray-600;
+}
+
+body.dark-mode form input::placeholder,
+body.dark-mode form select::placeholder,
+body.dark-mode form textarea::placeholder {
+    @apply text-gray-400;
+}
+
+body.dark-mode form label {
+    @apply text-gray-300;
+}
+
+body.dark-mode form .error-message {
+    @apply text-red-400;
+}
+
+/* Dark mode styles for the footer */
+body.dark-mode footer {
+    @apply bg-gray-800 text-white;
+}
+
+body.dark-mode footer a {
+    @apply text-gray-300;
+}
+
+/* Dark mode styles for the popup */
+body.dark-mode .popup-content {
+    @apply bg-gray-800 text-white;
+}
+
+body.dark-mode .popup-content .terms-content {
+    @apply text-white;
+}
+

@@ -1,0 +1,56 @@
+# Salamah Clone
+
+## Overview
+Salamah Clone is a project aimed at replicating the functionality of the original Salamah application. This project is designed to provide similar features and user experience.
+
+## Features
+- Feature 1: Description of feature 1.
+- Feature 2: Description of feature 2.
+- Feature 3: Description of feature 3.
+
+## Installation
+To install and run the project locally, follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/salamah-clone.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd salamah-clone
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Start the application:
+    ```bash
+    npm start
+    ```
+
+## Usage
+Provide instructions on how to use the application once it is up and running.
+
+## Contributing
+If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-branch
+    ```
+3. Make your changes and commit them:
+    ```bash
+    git commit -m "Description of changes"
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-branch
+    ```
+5. Create a pull request.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+For any questions or feedback, please contact [your email address].

@@ -1,3 +1,6 @@
+import { DarkMode } from './Darkmode';
+import { Button } from './Button';
+
 export class Header {
     private headerElement: HTMLElement;
 
@@ -12,8 +15,7 @@ export class Header {
         leftItem.className = "text-sm flex items-center hover:text-green-500 transition-colors duration-300";
 
         const rightItem = document.createElement("div");
-        rightItem.className = "text-sm flex items-center hover:text-green-500 transition-colors duration-300";
-        rightItem.textContent = "عربي";
+        rightItem.className = "text-sm flex items-center hover:text-green-500 transition-colors duration-300 ml-2";
 
         const phoneNumber = document.createElement("span");
         phoneNumber.textContent = "920000356";
@@ -24,6 +26,17 @@ export class Header {
 
         leftItem.appendChild(phoneIcon);
         leftItem.appendChild(phoneNumber);
+
+        // Create dark mode toggle button using Button component
+        const darkModeToggle = new Button("Toggle Dark Mode", (event: Event) => {
+            DarkMode.toggleDarkMode();
+        });
+
+        const darkModeToggleElement = darkModeToggle.render();
+        darkModeToggleElement.classList.add("mr-4"); 
+
+        rightItem.appendChild(darkModeToggleElement);
+        rightItem.appendChild(document.createTextNode("عربي"));
 
         this.headerElement.appendChild(leftItem);
         this.headerElement.appendChild(rightItem);

@@ -2,13 +2,13 @@ export class Footer {
     private footerElement: HTMLElement;
 
     constructor() {
-        //adding line seperator before footer
-        const lineSeperator = document.createElement("hr");
-        lineSeperator.className = "mt-5 max-w-6xl mx-auto";
-        document.body.appendChild(lineSeperator);
+        //adding line separator before footer
+        const lineSeparator = document.createElement("hr");
+        lineSeparator.className = "mt-9 max-w-6xl mx-auto";
+        document.body.appendChild(lineSeparator);
         
         this.footerElement = document.createElement("footer");
-        this.footerElement.className = "bg-customGray text-green-500 p-7 flex justify-center items-center shadow-md";
+        this.footerElement.className = "bg-customGray text-green-500 p-9 flex justify-center items-center shadow-md mt-auto";
         this.renderFooter();
     }
 

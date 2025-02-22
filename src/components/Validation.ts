@@ -3,7 +3,6 @@ export class Validation {
         const inputs = form.querySelectorAll("input, select");
 
         inputs.forEach(input => {
-            // Attach the 'input' event for real-time validation
             input.addEventListener("input", () => this.validateInput(input, form));
         });
     }
@@ -14,23 +13,27 @@ export class Validation {
         // Clear previous errors
         input.classList.remove("error");
         errorElement.textContent = "";
+        errorElement.classList.remove("animate__animated", "animate__shakeX"); // Remove animation classes
 
         // Validate required fields
         if (!input.value.trim()) {
             input.classList.add("error");
             errorElement.textContent = `${input.getAttribute("placeholder") || "This field"} is required.`;
+            errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation
         }
 
         // Validate email format
         if (input.type === "email" && input.value.trim() && !Validation.validateEmail(input.value)) {
             input.classList.add("error");
             errorElement.textContent = "Invalid email format.";
+            errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation
         }
 
         // Validate password strength
         if (input.type === "password" && input.value.trim() && !Validation.validatePassword(input.value)) {
             input.classList.add("error");
             errorElement.textContent = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
+            errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation
         }
 
         // Validate password confirmation
@@ -39,6 +42,7 @@ export class Validation {
             if (passwordInput && passwordInput.value.trim() && input.value.trim() && input.value !== passwordInput.value) {
                 input.classList.add("error");
                 errorElement.textContent = "Passwords do not match.";
+                errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation
             }
         }
 
@@ -46,6 +50,7 @@ export class Validation {
         if (input.id === "businessType" && !input.value) {
             input.classList.add("error");
             errorElement.textContent = "Business Type is required.";
+            errorElement.classList.add("animate__animated", "animate__shakeX"); // Add shake animation
         }
     }
 
