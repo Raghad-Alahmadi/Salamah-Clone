@@ -1,56 +1,84 @@
-# Salamah Clone
+Salamah Clone
+Overview
+Salamah Clone is a project aimed at replicating the functionality of the original Salamah application. This project is designed to provide similar features and user experience, focusing on a permit requester registration form with dynamic field prefill, form validation, and submission using the Fetch API.
 
-## Overview
-Salamah Clone is a project aimed at replicating the functionality of the original Salamah application. This project is designed to provide similar features and user experience.
+Features
+Dynamic Field Prefill: Automatically fills form fields (e.g., Commercial Registration Number, Business Type, Email, Phone, etc.) when the user enters a company name that matches data from the API.
 
-## Features
-- Feature 1: Description of feature 1.
-- Feature 2: Description of feature 2.
-- Feature 3: Description of feature 3.
+Form Validation: Ensures all required fields are filled out correctly before submission.
 
-## Installation
+Form Submission: Submits form data to an API endpoint using the Fetch API, excluding sensitive fields like passwords.
+
+Success and Error Handling: Displays success popups for successful submissions and error messages with animations for validation or API errors.
+
+Terms & Conditions Popup: Provides a detailed Terms & Conditions popup for user agreement.
+
+Loading Spinner: Shows a loading spinner during form submission to enhance user experience.
+
+Installation
 To install and run the project locally, follow these steps:
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/salamah-clone.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd salamah-clone
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-4. Start the application:
-    ```bash
-    npm start
-    ```
+Clone the repository:
 
-## Usage
-Provide instructions on how to use the application once it is up and running.
+bash
+Copy
+git clone https://github.com/your-username/salamah-clone.git
+Navigate to the project directory:
 
-## Contributing
+bash
+Copy
+cd salamah-clone
+Install dependencies:
+
+bash
+Copy
+npm install
+Start the application:
+
+bash
+Copy
+npm start
+Usage
+Once the application is running, follow these steps to use it:
+
+Open the Application: Navigate to http://localhost:3000 in your browser.
+
+Fill Out the Form:
+
+Enter the company name. If it matches data from the API, the form will automatically prefill fields like Commercial Registration Number, Email, Phone, City, Region, Zip Code, and Business Type.
+
+Fill in any remaining fields manually.
+
+Agree to Terms & Conditions: Click the "Terms & Conditions" link to review and agree to the terms.
+
+Submit the Form: Click the "Submit" button to submit the form. If successful, a success popup will appear, and the form fields will be cleared.
+
+Handle Errors: If there are validation errors or API issues, an error message will be displayed with a shake animation.
+
+Contributing
 If you would like to contribute to this project, please follow these steps:
 
-1. Fork the repository.
-2. Create a new branch:
-    ```bash
-    git checkout -b feature-branch
-    ```
-3. Make your changes and commit them:
-    ```bash
-    git commit -m "Description of changes"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature-branch
-    ```
-5. Create a pull request.
+Fork the repository.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Create a new branch:
 
-## Contact
-For any questions or feedback, please contact [your email address].
+bash
+Copy
+git checkout -b feature-branch
+Make your changes and commit them:
+
+bash
+Copy
+git commit -m "Description of changes"
+Push to the branch:
+
+bash
+Copy
+git push origin feature-branch
+Create a pull request.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+For any questions or feedback, please contact Raghad Adnan.
